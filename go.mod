@@ -5,5 +5,5 @@ go 1.27.2
 require (
 	github.com/coreos/go-systemd/v22 v22.7.0
 	github.com/godbus/dbus/v5 v5.2.2
-	golang.org/x/sys v0.48.0
+	golang.org/x/sys v0.49.0
 )
