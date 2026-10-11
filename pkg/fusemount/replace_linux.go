@@ -86,7 +86,7 @@ func onDisposableThread(f func() error) error {
 	errc := make(chan error, 1)
 	go func() {
 		// Never unlocked on this path: the runtime terminates the thread when the
-		// goroutine exits instead of running other goroutines on it.
+		// goroutine exits and runs no other goroutine on it.
 		runtime.LockOSThread()
 		if unix.Gettid() == unix.Getpid() {
 			// The runtime cannot terminate the main thread, it would keep it parked

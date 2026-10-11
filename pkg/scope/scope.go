@@ -1,6 +1,6 @@
 // Package scope moves FUSE daemons into transient systemd scopes of the host.
 //
-// A daemon in a scope belongs to the service manager of the host instead of the
+// A daemon in a scope belongs to the service manager of the host, not to the
 // cgroup of the container that started it, so the container runtime does not kill
 // it with the CSI driver pod. A scope is named after a volume id, which makes the
 // daemon of a volume findable and stoppable after the driver restarted, without
