@@ -152,7 +152,8 @@ func (m *Manager) Watch(ctx context.Context, onStop func(unit string)) error {
 				if state, ok := u.Changed["ActiveState"]; ok && m.owns(u.UnitName) && state.Value() != "active" {
 					onStop(u.UnitName)
 				}
-			case <-dropped:
+			// The error only says events were lost, which onStop("") covers.
+			case <-dropped: //nolint:errcheck
 				onStop("")
 			case <-ctx.Done():
 				return

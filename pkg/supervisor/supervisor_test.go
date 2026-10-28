@@ -215,7 +215,10 @@ func TestStartedDaemonWakesTheLoopWhenItExits(t *testing.T) {
 		t.Fatal(err)
 	}
 	select {
-	case <-exited:
+	case err := <-exited:
+		if err == nil {
+			t.Error("OnExit error = nil, want the kill")
+		}
 	case <-time.After(10 * time.Second):
 		t.Fatal("OnExit not called")
 	}
